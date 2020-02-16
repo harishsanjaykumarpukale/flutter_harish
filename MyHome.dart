@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,55 +17,44 @@ class MyHome extends StatelessWidget {
         ],
       ),
       body: new Center(
-        child: new Card(
-          elevation: 8.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              const ListTile(
-                leading: const Icon(Icons.place,size: 50.0),
+        child: new ListView(
+          children: <Widget>[
+            Card(
+              elevation: 8,
+              borderOnForeground: true,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+              margin: EdgeInsets.all(30.0),
+              child: ListTile(
                 title: Text("Upcoming Visit - 20/02/20"),
                 subtitle: Text("Your Next Visit is Scheduled on 20/02/20"),
-                isThreeLine: true,
+                leading: Icon(Icons.place,size: 50.0,),
               ),
-              new Divider(),
-              const ListTile(
-                leading: const Icon(Icons.note,size: 50.0,),
-                title: Text("Upcoming Prescription "),
+            ),
+            Card(
+              elevation: 8,
+              borderOnForeground: true,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+              margin: EdgeInsets.all(30.0),
+              child: ListTile(
+                title: Text("Prescription"),
+                subtitle: Text("Take <medicine> at <time>"),
+                leading: Icon(Icons.note,size: 50.0,),
               ),
-
-              new Divider(),
-
-              const ListTile(
-                leading: const Icon(Icons.question_answer,size: 50.0,),
+            ),
+            Card(
+              elevation: 8,
+              borderOnForeground: true,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+              margin: EdgeInsets.all(30.0),
+              child: ListTile(
                 title: Text("Questionnaire"),
                 subtitle: Text("You have a Questionnaire to answer"),
-                isThreeLine: true,
+                leading: Icon(Icons.question_answer,size: 50.0,),
               ),
+            ),
 
-//              new Divider(),
-//
-//              ListTile(
-//                leading: GestureDetector(
-//                  behavior: HitTestBehavior.translucent,
-//                  onTap: () {
-//                    Navigator.of(context).pushNamed("/prescription");
-//                  },
-//                  child: Container(
-//                    width: 48,
-//                    height: 48,
-//                    padding: EdgeInsets.symmetric(vertical: 4.0),
-//                    alignment: Alignment.center,
-//                    child: CircleAvatar(),
-//                  ),
-//                ),
-//                enabled: true,
-//                title: Text('title'),
-//                dense: false,
-//              ),
-            ],
-          ),
-        ),
+          ],
+        )
       ),
 
       drawer: new Drawer(
@@ -143,3 +133,6 @@ class MyHome extends StatelessWidget {
     );
   }
 }
+
+
+
