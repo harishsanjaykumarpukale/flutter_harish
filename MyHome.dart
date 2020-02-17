@@ -46,6 +46,9 @@ class MyHome extends StatelessWidget {
                 title: Text("Prescription"),
                 subtitle: Text("Take <medicine> at <time>"),
                 leading: Icon(Icons.note,size: 50.0,),
+                onTap: (){
+                  Navigator.of(context).pushNamed("/prescription");
+                },
               ),
             ),
             Card(
@@ -147,17 +150,3 @@ class MyHome extends StatelessWidget {
   }
 }
 
-
-
-
-//new DrawerHeader(
-//decoration: new BoxDecoration(
-//color: Color(0xFF2B276D),
-//),
-//child: new UserAccountsDrawerHeader(
-//accountName: Text("User's Name"),
-//currentAccountPicture: new CircleAvatar(),
-//accountEmail: Text("Email-id"),
-//)
-//
-//),

@@ -15,8 +15,7 @@ class Prescription extends StatelessWidget {
               elevation: 8,
               borderOnForeground: true,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
-//              margin: EdgeInsets.all(30.0),
-              ma
+              margin: EdgeInsets.all(30.0),
               child: ListTile(
                 title: Text("Have you taken  medicine"),
                 leading: Icon(Icons.note,size: 50.0,),
