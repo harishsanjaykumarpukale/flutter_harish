@@ -4,6 +4,7 @@ class Prescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+        backgroundColor: Color(0xFF2B276D),
         centerTitle: true,
         title: new Text("EPRO"),
       ),
@@ -14,12 +15,25 @@ class Prescription extends StatelessWidget {
               elevation: 8,
               borderOnForeground: true,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
-              margin: EdgeInsets.all(30.0),
+//              margin: EdgeInsets.all(30.0),
+              ma
               child: ListTile(
                 title: Text("Have you taken  medicine"),
                 leading: Icon(Icons.note,size: 50.0,),
+
               ),
             ),
+            ButtonBar(
+              children: <Widget>[
+                FlatButton(
+                  child: const Text("Yes"),
+                ),
+                FlatButton(
+                  child: const Text("No"),
+                )
+                
+              ],
+            )
           ],
         )
       ),

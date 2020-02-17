@@ -6,13 +6,20 @@ class MyHome extends StatelessWidget {
     return  new Scaffold(
 
       appBar: new AppBar(
+        backgroundColor: Color(0xFF2B276D),
         title: new Text("EPRO"),
         centerTitle: true,
         elevation: 1.0,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
-            child: Icon(Icons.account_box),
+            child: IconButton(
+                icon: Icon(Icons.account_box),
+                iconSize: 40.0,
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/myaccount");
+                },
+            ),
           )
         ],
       ),
@@ -60,13 +67,19 @@ class MyHome extends StatelessWidget {
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
+
             new UserAccountsDrawerHeader(
               accountName: new Text("Harish S P"),
+              decoration: new BoxDecoration(
+                color: Color(0xFF2B276D)
+              ),
               accountEmail: new Text("harish.s.pukale123@gmail.com"),
               currentAccountPicture: new CircleAvatar(
                 backgroundColor: Colors.white,
               ),
+
             ),
+
             new Divider(),
             new ListTile(
               title: new Text("Prescription History"),
@@ -136,3 +149,15 @@ class MyHome extends StatelessWidget {
 
 
 
+
+//new DrawerHeader(
+//decoration: new BoxDecoration(
+//color: Color(0xFF2B276D),
+//),
+//child: new UserAccountsDrawerHeader(
+//accountName: Text("User's Name"),
+//currentAccountPicture: new CircleAvatar(),
+//accountEmail: Text("Email-id"),
+//)
+//
+//),
