@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-class MyHome extends StatelessWidget {
+import 'package:outline_material_icons/outline_material_icons.dart';
+
+class MyHome extends StatefulWidget {
+  @override
+  _MyHomeState createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHome> {
+  int _currentIndex = 3;
+
+  void _onItemTapped(index){
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  new Scaffold(
-
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         backgroundColor: Color(0xFF2B276D),
         title: new Text("EPRO"),
         centerTitle: true,
@@ -14,7 +28,7 @@ class MyHome extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: IconButton(
-                icon: Icon(Icons.account_box),
+                icon: Icon(Icons.person_outline),
                 iconSize: 40.0,
                 onPressed: (){
                   Navigator.of(context).pushNamed("/myaccount");
@@ -23,6 +37,7 @@ class MyHome extends StatelessWidget {
           )
         ],
       ),
+
       body: new Center(
         child: new ListView(
           children: <Widget>[
@@ -115,38 +130,59 @@ class MyHome extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: new Container(
-        color: Colors.white,
-        height: 50.0,
-        alignment: Alignment.center,
-        child: new BottomAppBar(
-          child: new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              new IconButton(
-                  icon: Icon(Icons.place),
-                  onPressed: null
+      bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                activeIcon: Icon(OMIcons.place,size: 40.0,color: Color(0xFF2B276D),),
+              icon: IconButton(
+                //color: _currentIndex == 0 ? Color(0xFF2B276D) : Colors.black,
+                color: Colors.black,
+                icon: Icon(OMIcons.place,size: 40.0,),
+                onPressed: (){
+                 // Navigator.of(context).pushNamed("/visit");
+                },
               ),
-              new IconButton(
-                  icon: Icon(Icons.question_answer),
-                  onPressed: null
-              ),
-              new IconButton(
-                  icon: Icon(Icons.history),
+              title: Text("Visit")
+            ),
+            BottomNavigationBarItem(
+                activeIcon: Icon(Icons.question_answer,size: 40.0,color: Color(0xFF2B276D),),
+                icon: IconButton(
+                  color: Colors.black,
+                  icon: Icon(OMIcons.questionAnswer,size: 40.0,),
+                  onPressed: (){
+                   // Navigator.of(context).pushNamed("/questionnaire");
+                  },
+                ),
+                title: Text("Questionnaire")
+            ),
+            BottomNavigationBarItem(
+                activeIcon: Icon(Icons.note,size: 40.0,color: Color(0xFF2B276D),),
+                icon: IconButton(
+                  color: Colors.black,
+                  icon: Icon(OMIcons.note,size: 40.0,),
                   onPressed: (){
                     Navigator.of(context).pushNamed("/prescription");
-                  }
-              ),
-              new IconButton(
-                  icon: Icon(Icons.home),
-                  onPressed: null
-              )
-            ],
-          ),
-        ),
-      ),
+                  },
+                ),
+                title: Text("Prescription")
+            ),
+            BottomNavigationBarItem(
+                activeIcon: Icon(Icons.home,size: 40.0,color: Color(0xFF2B276D),),
+                icon: IconButton(
+                  color: Colors.black,
+                  icon: Icon(OMIcons.home,size: 40.0,),
+                  onPressed: (){
+                  },
 
+                ),
+                title: Text("Home")
+            ),
+          ],
+        currentIndex: _currentIndex,
+        onTap: _onItemTapped,
+
+
+      )
     );
   }
 }
-

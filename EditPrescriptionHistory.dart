@@ -1,11 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
-class Prescription extends StatefulWidget {
-  @override
-  _PrescriptionState createState() => _PrescriptionState();
-}
 
-class _PrescriptionState extends State<Prescription> {
+
+class EditPrescriptionHistory extends StatefulWidget {
+  @override
+  _EditPrescriptionHistoryState createState() => _EditPrescriptionHistoryState();
+}
+enum ConfirmAction { CANCEL, ACCEPT }
+
+class _EditPrescriptionHistoryState extends State<EditPrescriptionHistory> {
+
+
+  Future<ConfirmAction> _asyncConfirmDialog(BuildContext context) async {
+  return showDialog<ConfirmAction>(
+  context: context,
+  barrierDismissible: false, // user must tap button for close dialog!
+  builder: (BuildContext context) {
+  return AlertDialog(
+  title: Text('Change Response?'),
+  content: const Text(
+  'ARE YOU SURE YOU WANT TO CHANGE YOUR RESPONSE?'),
+  actions: <Widget>[
+  FlatButton(
+  child: const Text('CANCEL'),
+  onPressed: () {
+  Navigator.of(context).pop(ConfirmAction.CANCEL);
+  },
+  ),
+  FlatButton(
+  child: const Text('ACCEPT'),
+  onPressed: () {
+  Navigator.of(context).pop(ConfirmAction.ACCEPT);
+  },
+  )
+  ],
+  );
+  },
+  );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,14 +64,8 @@ class _PrescriptionState extends State<Prescription> {
           Divider(height: 10,),
           ListTile(
             contentPadding: EdgeInsets.all(3.0),
-            title: Text("Prescription",textScaleFactor: 2.0,textAlign: TextAlign.center,),
-            trailing: IconButton(
-              icon: Icon(Icons.history,size: 30.0,),
-              onPressed: (){
-                Navigator.of(context).pushNamed("/prescrhistory");
-              },
-              color: Colors.black,
-            ),
+            title: Text("DD-MM-YYYY",textScaleFactor: 2.0,textAlign: TextAlign.center,),
+
           ),
           Divider(height: 10,thickness: 10,),
           Card(
@@ -59,23 +85,14 @@ class _PrescriptionState extends State<Prescription> {
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
-                  child: Text("Yes"),
-                  textColor: Colors.black,
-                  shape: RoundedRectangleBorder(),
-                  color: Colors.greenAccent,
-                  onPressed: (){
-
-                  }
+                    child: Text("Change to Yes/No"),
+                    textColor: Colors.black,
+                    shape: RoundedRectangleBorder(),
+                    color: Colors.greenAccent,
+                    onPressed: (){
+                      _asyncConfirmDialog(context);
+                    }
                 ),
-                FlatButton(
-                  child: Text("No"),
-                  textColor: Colors.black,
-                  shape: RoundedRectangleBorder(),
-                  color: Colors.redAccent,
-                  onPressed: (){
-
-                  },
-                )
               ],
             ),
           ),
@@ -97,23 +114,14 @@ class _PrescriptionState extends State<Prescription> {
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
-                    child: Text("Yes"),
+                    child: Text("Change to Yes/No"),
                     textColor: Colors.black,
                     shape: RoundedRectangleBorder(),
                     color: Colors.greenAccent,
                     onPressed: (){
-
+                      _asyncConfirmDialog(context);
                     }
                 ),
-                FlatButton(
-                  child: Text("No"),
-                  textColor: Colors.black,
-                  shape: RoundedRectangleBorder(),
-                  color: Colors.redAccent,
-                  onPressed: (){
-
-                  },
-                )
               ],
             ),
           ),
@@ -135,23 +143,14 @@ class _PrescriptionState extends State<Prescription> {
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
-                    child: Text("Yes"),
+                    child: Text("Change to Yes/No"),
                     textColor: Colors.black,
                     shape: RoundedRectangleBorder(),
                     color: Colors.greenAccent,
                     onPressed: (){
-
+                      _asyncConfirmDialog(context);
                     }
                 ),
-                FlatButton(
-                  child: Text("No"),
-                  textColor: Colors.black,
-                  shape: RoundedRectangleBorder(),
-                  color: Colors.redAccent,
-                  onPressed: (){
-
-                  },
-                )
               ],
             ),
           ),
@@ -211,4 +210,3 @@ class _PrescriptionState extends State<Prescription> {
     );
   }
 }
-
