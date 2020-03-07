@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 
 class MyHome extends StatefulWidget {
   @override
@@ -28,7 +27,7 @@ class _MyHomeState extends State<MyHome> {
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: IconButton(
-                icon: Icon(Icons.person_outline),
+                icon: Icon(Icons.assignment_turned_in),
                 iconSize: 40.0,
                 onPressed: (){
                   Navigator.of(context).pushNamed("/myaccount");
@@ -41,42 +40,127 @@ class _MyHomeState extends State<MyHome> {
       body: new Center(
         child: new ListView(
           children: <Widget>[
-            Card(
-              elevation: 8,
-              borderOnForeground: true,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
-              margin: EdgeInsets.all(30.0),
-              child: ListTile(
-                title: Text("Upcoming Visit - 20/02/20"),
-                subtitle: Text("Your Next Visit is Scheduled on 20/02/20"),
-                leading: Icon(Icons.place,size: 50.0,),
+            Container(
+              height: 300,
+              //padding: EdgeInsets.all(15.0),
+              child: Card(
+
+                elevation: 8,
+                borderOnForeground: true,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+                margin: EdgeInsets.all(15.0),
+
+                child: Column(
+
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Align(
+                      child: new Container(
+                        width: 15.0,
+                        height: 15.0,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle
+                        ),
+                      ),
+                      alignment: Alignment.topRight,
+                      ),
+                    ListTile(
+                      title: Text("Upcoming Visit - 20/02/20"),
+                      subtitle: Text("Your Next Visit is Scheduled on 20/02/20 time: hh:mm"),
+                      isThreeLine: true,
+                      leading: Icon(Icons.place,size: 50.0,),
+
+                    ),
+                    ListTile(
+                      isThreeLine: true,
+                      title: Text("Name of Hospital"),
+                      subtitle: Text("Address of Hospital \n Visit Number - "),
+                      trailing: IconButton(
+                        icon: Icon(Icons.directions,size: 50.0,),
+                        onPressed: (){
+
+                        },
+                      ),
+                    ),
+
+                    RaisedButton(
+                      elevation: 2.0,
+                      child: Text("Reschedule"),
+                      onPressed: (){
+
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+
+                    )
+                  ],
+
+
+                )
               ),
             ),
-            Card(
-              elevation: 8,
-              borderOnForeground: true,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
-              margin: EdgeInsets.all(30.0),
-              child: ListTile(
-                title: Text("Prescription"),
-                subtitle: Text("Take <medicine> at <time>"),
-                leading: Icon(Icons.note,size: 50.0,),
-                onTap: (){
-                  Navigator.of(context).pushNamed("/prescription");
-                },
+            Container(
+              height: 300,
+              //padding: EdgeInsets.all(15.0),
+              child: Card(
+
+                  elevation: 8,
+                  borderOnForeground: true,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+                  margin: EdgeInsets.all(15.0),
+
+                  child: Column(
+
+                    children: <Widget>[
+                      ListTile(
+                        title: Text("Prescription"),
+                        subtitle: Text("Take <medicine> at <time>"),
+                        leading: Icon(Icons.note,size: 50.0,),
+                        onTap: (){
+                          Navigator.of(context).pushNamed("/prescription");
+                        },
+                      ),
+                    ],
+
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  )
               ),
             ),
-            Card(
-              elevation: 8,
-              borderOnForeground: true,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
-              margin: EdgeInsets.all(30.0),
-              child: ListTile(
-                title: Text("Questionnaire"),
-                subtitle: Text("You have a Questionnaire to answer"),
-                leading: Icon(Icons.question_answer,size: 50.0,),
+            Container(
+              height: 300,
+              //padding: EdgeInsets.all(15.0),
+              child: Card(
+
+                  elevation: 8,
+                  borderOnForeground: true,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+                  margin: EdgeInsets.all(15.0),
+
+                  child: Column(
+
+                    children: <Widget>[
+                      Align(
+                        child: new Container(
+                          width: 15.0,
+                          height: 15.0,
+                          decoration: BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle
+                          ),
+                        ),
+                        alignment: Alignment.topRight,
+                      ),
+                      ListTile(
+                        title: Text("Questionnaire"),
+                        subtitle: Text("You have a Questionnaire to answer"),
+                        leading: Icon(Icons.question_answer,size: 50.0,),
+                      ),
+
+                    ],
+                  )
               ),
             ),
+
 
           ],
         )
@@ -130,59 +214,40 @@ class _MyHomeState extends State<MyHome> {
         ),
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                activeIcon: Icon(OMIcons.place,size: 40.0,color: Color(0xFF2B276D),),
-              icon: IconButton(
-                //color: _currentIndex == 0 ? Color(0xFF2B276D) : Colors.black,
-                color: Colors.black,
-                icon: Icon(OMIcons.place,size: 40.0,),
-                onPressed: (){
-                 // Navigator.of(context).pushNamed("/visit");
-                },
+      bottomNavigationBar: new Container(
+        color: Colors.white,
+        height: 50.0,
+        alignment: Alignment.center,
+        child: new BottomAppBar(
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              new IconButton(
+                  icon: Icon(Icons.home,color: Color(0xFF2B276D)),
+                  onPressed: null
               ),
-              title: Text("Visit")
-            ),
-            BottomNavigationBarItem(
-                activeIcon: Icon(Icons.question_answer,size: 40.0,color: Color(0xFF2B276D),),
-                icon: IconButton(
-                  color: Colors.black,
-                  icon: Icon(OMIcons.questionAnswer,size: 40.0,),
+              new IconButton(
+                  icon: Icon(Icons.local_hospital,color: Color(0xFF2B276D)),
                   onPressed: (){
-                   // Navigator.of(context).pushNamed("/questionnaire");
-                  },
-                ),
-                title: Text("Questionnaire")
-            ),
-            BottomNavigationBarItem(
-                activeIcon: Icon(Icons.note,size: 40.0,color: Color(0xFF2B276D),),
-                icon: IconButton(
-                  color: Colors.black,
-                  icon: Icon(OMIcons.note,size: 40.0,),
+                    Navigator.of(context).pushNamed("/visit");
+                  }
+              ),
+              new IconButton(
+                  icon: Icon(Icons.assignment,color: Color(0xFF2B276D)),
                   onPressed: (){
                     Navigator.of(context).pushNamed("/prescription");
-                  },
-                ),
-                title: Text("Prescription")
-            ),
-            BottomNavigationBarItem(
-                activeIcon: Icon(Icons.home,size: 40.0,color: Color(0xFF2B276D),),
-                icon: IconButton(
-                  color: Colors.black,
-                  icon: Icon(OMIcons.home,size: 40.0,),
+                  }
+              ),
+              new IconButton(
+                  icon: Icon(Icons.question_answer,color: Color(0xFF2B276D)),
                   onPressed: (){
-                  },
-
-                ),
-                title: Text("Home")
-            ),
-          ],
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-
-
-      )
+                    Navigator.of(context).pushNamed("/questionnaire");
+                  }
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
