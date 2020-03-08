@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-
+import 'package:outline_material_icons/outline_material_icons.dart';
 class MyHome extends StatefulWidget {
   @override
   _MyHomeState createState() => _MyHomeState();
 }
 
+
 class _MyHomeState extends State<MyHome> {
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _currentIndex = 3;
 
   void _onItemTapped(index){
@@ -18,16 +20,26 @@ class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Color(0xFF2B276D),
-        title: new Text("EPRO"),
+        backgroundColor: Colors.white,
+
+        title: new Text("EPRO",style: TextStyle(color: Color(0xFF2B276D)),),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          color: Color(0xFF2B276D),
+          onPressed: (){
+            _scaffoldKey.currentState.openDrawer();
+          },
+        ),
         centerTitle: true,
         elevation: 1.0,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: IconButton(
-                icon: Icon(Icons.assignment_turned_in),
+                icon: Icon(Icons.account_box),
+                color: Color(0xFF2B276D),
                 iconSize: 40.0,
                 onPressed: (){
                   Navigator.of(context).pushNamed("/myaccount");
@@ -84,14 +96,20 @@ class _MyHomeState extends State<MyHome> {
                       ),
                     ),
 
-                    RaisedButton(
-                      elevation: 2.0,
-                      child: Text("Reschedule"),
-                      onPressed: (){
-
-                      },
+                    ButtonTheme(
+                      height: 40,
+                      minWidth: 328,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+                      child: RaisedButton(
+                        elevation: 2.0,
 
+                        color: Color(0xFF2B276D),
+                        child: Text("Reschedule",style: TextStyle(color: Colors.white),),
+                        onPressed: (){
+                        },
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+
+                      ),
                     )
                   ],
 
@@ -167,6 +185,7 @@ class _MyHomeState extends State<MyHome> {
       ),
 
       drawer: new Drawer(
+
         child: new ListView(
           children: <Widget>[
 
@@ -212,6 +231,7 @@ class _MyHomeState extends State<MyHome> {
 
           ],
         ),
+
       ),
 
       bottomNavigationBar: new Container(

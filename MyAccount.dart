@@ -6,6 +6,7 @@ class MyAccount extends StatefulWidget {
 }
 
 class _MyAccountState extends State<MyAccount> {
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Future<String> _asyncInputDialog(BuildContext context) async {
     String teamName = '';
     return showDialog<String>(
@@ -62,15 +63,24 @@ class _MyAccountState extends State<MyAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2B276D),
-        title: new Text("EPRO"),
+        backgroundColor: Colors.white,
+
+        title: new Text("EPRO",style: TextStyle(color: Color(0xFF2B276D)),),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          color: Color(0xFF2B276D),
+          onPressed: (){
+            _scaffoldKey.currentState.openDrawer();
+          },
+        ),
         centerTitle: true,
         elevation: 1.0,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: IconButton(
-              icon: Icon(Icons.person_outline),
+              icon: Icon(Icons.account_box),
+              color: Color(0xFF2B276D),
               iconSize: 40.0,
               onPressed: (){
                 Navigator.of(context).pushNamed("/myaccount");
@@ -151,56 +161,39 @@ class _MyAccountState extends State<MyAccount> {
             ],
           )
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                activeIcon: Icon(OMIcons.place,size: 40.0,color: Color(0xFF2B276D),),
-                icon: IconButton(
-                  //color: _currentIndex == 0 ? Color(0xFF2B276D) : Colors.black,
-                  color: Colors.black,
-                  icon: Icon(OMIcons.place,size: 40.0,),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        height: 50.0,
+        alignment: Alignment.center,
+        child: new BottomAppBar(
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              new IconButton(
+                  icon: Icon(Icons.home,color: Color(0xFF2B276D)),
+                  onPressed: null
+              ),
+              new IconButton(
+                  icon: Icon(Icons.local_hospital,color: Color(0xFF2B276D)),
                   onPressed: (){
-                    // Navigator.of(context).pushNamed("/visit");
-                  },
-                ),
-                title: Text("Visit")
-            ),
-            BottomNavigationBarItem(
-                activeIcon: Icon(Icons.question_answer,size: 40.0,color: Color(0xFF2B276D),),
-                icon: IconButton(
-                  color: Colors.black,
-                  icon: Icon(OMIcons.questionAnswer,size: 40.0,),
-                  onPressed: (){
-                    // Navigator.of(context).pushNamed("/questionnaire");
-                  },
-                ),
-                title: Text("Questionnaire")
-            ),
-            BottomNavigationBarItem(
-                activeIcon: Icon(Icons.note,size: 40.0,color: Color(0xFF2B276D),),
-                icon: IconButton(
-                  color: Colors.black,
-                  icon: Icon(OMIcons.note,size: 40.0,),
+                    Navigator.of(context).pushNamed("/visit");
+                  }
+              ),
+              new IconButton(
+                  icon: Icon(Icons.assignment,color: Color(0xFF2B276D)),
                   onPressed: (){
                     Navigator.of(context).pushNamed("/prescription");
-                  },
-                ),
-                title: Text("Prescription")
-            ),
-            BottomNavigationBarItem(
-                activeIcon: Icon(Icons.home,size: 40.0,color: Color(0xFF2B276D),),
-                icon: IconButton(
-                  color: Colors.black,
-                  icon: Icon(OMIcons.home,size: 40.0,),
+                  }
+              ),
+              new IconButton(
+                  icon: Icon(Icons.question_answer,color: Color(0xFF2B276D)),
                   onPressed: (){
-                  },
-
-                ),
-                title: Text("Home")
-            ),
-          ]
-
-
+                    Navigator.of(context).pushNamed("/questionnaire");
+                  }
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
